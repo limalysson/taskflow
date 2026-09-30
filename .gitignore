@@ -1,0 +1,19 @@
+# Dependências
+node_modules/
+
+# Build de Produção
+dist/
+dist-ssr/
+
+# Logs e Ambientes Locais
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sistema Operacional e IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

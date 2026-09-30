@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Fundo Squircle Things 3 Sóbrio -->
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="#181a20" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+  
+  <!-- Círculo Central Azul Safira iOS -->
+  <circle cx="256" cy="256" r="140" fill="#2563eb" />
+  
+  <!-- Checkmark Branco Nítido -->
+  <path d="M196 260 L238 302 L320 216" fill="none" stroke="#ffffff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
