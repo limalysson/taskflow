@@ -82,3 +82,10 @@ To-do/
 - [x] Inicialização do repositório Git local e primeiro commit
 - [x] Vinculação do repositório remoto (`https://github.com/limalysson/taskflow.git`)
 - [x] Push para branch `main`
+
+### Etapa 8: Deploy no GitHub Pages (Branch gh-pages)
+- [x] Configuração de `base: '/taskflow/'` no `vite.config.js`
+- [x] Ajuste de caminhos dinâmicos no Service Worker (`sw.js`) e `manifest.webmanifest`
+- [x] Validação local do build com novo base path (`npm run build`)
+- [x] Publicação dos arquivos compilados (`dist/`) na branch `gh-pages`
+- [x] Sincronização do código fonte com a branch `main`

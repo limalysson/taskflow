@@ -1,11 +1,16 @@
-const CACHE_NAME = 'taskflow-v1';
+const CACHE_NAME = 'taskflow-v2';
+
+// Detecta o escopo dinâmico (funciona tanto em localhost/ quanto em /taskflow/)
+const SCOPE_URL = self.registration ? self.registration.scope : self.location.origin + '/';
+const BASE_PATH = new URL(SCOPE_URL).pathname;
+
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.webmanifest',
-  '/favicon.svg',
-  '/icon-192.png',
-  '/icon-512.png'
+  BASE_PATH,
+  `${BASE_PATH}index.html`,
+  `${BASE_PATH}manifest.webmanifest`,
+  `${BASE_PATH}favicon.svg`,
+  `${BASE_PATH}icon-192.png`,
+  `${BASE_PATH}icon-512.png`
 ];
 
 // Instalação do Service Worker e pré-cache de assets essenciais
@@ -13,7 +18,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn('Alguns assets podem ser cacheados dinamicamente:', err);
+        console.warn('Alguns assets serão cacheados dinamicamente na navegação:', err);
       });
     }).then(() => self.skipWaiting())
   );
@@ -36,7 +41,6 @@ self.addEventListener('activate', (event) => {
 
 // Estratégia de requisição: Cache First com fallback de rede (Stale While Revalidate)
 self.addEventListener('fetch', (event) => {
-  // Ignora requisições não-GET e extensões de navegadores
   if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
     return;
   }
@@ -54,9 +58,8 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch(() => {
-          // Se falhar a rede e não tiver cache, tenta retornar a página inicial para navegação
           if (event.request.mode === 'navigate') {
-            return caches.match('/');
+            return caches.match(BASE_PATH) || caches.match(`${BASE_PATH}index.html`);
           }
         });
 
